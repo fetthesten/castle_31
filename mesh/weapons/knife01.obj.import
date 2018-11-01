@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/knife01.obj-c0873d318f8cc19afea035cfba8bd452.mesh"
+
+[deps]
+
+files=[ "res://.import/knife01.obj-c0873d318f8cc19afea035cfba8bd452.mesh" ]
+
+source_file="res://mesh/weapons/knife01.obj"
+dest_files=[ "res://.import/knife01.obj-c0873d318f8cc19afea035cfba8bd452.mesh", "res://.import/knife01.obj-c0873d318f8cc19afea035cfba8bd452.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

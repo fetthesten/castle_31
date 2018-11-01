@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://obj/player_test_3d.tscn" type="PackedScene" id=1]
+
+[node name="3dtest01" type="Spatial"]
+
+[node name="player_test_3d" parent="." instance=ExtResource( 1 )]
+
