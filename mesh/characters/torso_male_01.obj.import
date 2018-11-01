@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/torso_male_01.obj-75db1e22e5e1ed98674f48e0f6f1b666.mesh"
+
+[deps]
+
+files=[ "res://.import/torso_male_01.obj-75db1e22e5e1ed98674f48e0f6f1b666.mesh" ]
+
+source_file="res://mesh/characters/torso_male_01.obj"
+dest_files=[ "res://.import/torso_male_01.obj-75db1e22e5e1ed98674f48e0f6f1b666.mesh", "res://.import/torso_male_01.obj-75db1e22e5e1ed98674f48e0f6f1b666.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

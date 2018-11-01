@@ -1,10 +1,13 @@
 extends Spatial
 
+# cardinal directions for topdown movement
 const V3_ZERO = Vector3(0,0,0)
 const V3_LEFT = Vector3(-1,0,0)
 const V3_RIGHT = Vector3(1,0,0)
 const V3_UP = Vector3(0,0,-1)
 const V3_DOWN = Vector3(0,0,1)
+# world up vector for lookat
+const V3_WORLDUP = Vector3(0,1,0)
 
 onready var info_label = $layer_hud/label_info
 onready var hud_weapon = $layer_hud/hud_weapon

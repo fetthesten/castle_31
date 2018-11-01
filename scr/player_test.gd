@@ -1,15 +1,23 @@
 extends KinematicBody
 
-export var movement_speed = 6000
-export var camera_offset = Vector3(0,10,15)
+export var movement_speed = 30
+export var deceleration = 80
+export var max_movement_speed = 20
+export var rotation_speed = 50
+export var camera_offset = Vector3(0,20,12)
 onready var area_check = $area_check
 onready var camera = main.current_camera
 onready var info_label = main.info_label
 
 var weapons = []
 var current_weapon = 0
+var current_movespeed = 0
+var forward = main.V3_UP
+
 var weapon_model
 var last_dir = main.V3_UP
+var last_movetime = 0
+var last_step = 0
 onready var weapon_offset = $weapon_offset
 var weap_tween
 var can_move = true
@@ -63,10 +71,33 @@ func _process(delta):
 		change_weapon()
 	
 	if move != main.V3_ZERO:
+		current_movespeed += movement_speed * delta
+		current_movespeed = min(current_movespeed, max_movement_speed)
+		if move != last_dir:
+			last_movetime = OS.get_ticks_msec()
 		last_dir = move
+	else:
+		current_movespeed -= deceleration * delta
+		current_movespeed = max(current_movespeed, 0)
+	
+	transform = transform.orthonormalized()
 	
 	if Input.is_action_pressed('game_attack'):
 		attack_start()
+	
+	# rotation
+	# first snap to final orientation, then gradually slerp towards it if
+	# player moved recently
+	var current_rot = Quat(transform.basis)
+	if move != main.V3_ZERO:
+		look_at(global_transform.origin + move, main.V3_WORLDUP)
+	var target_rot = Quat(transform.basis)
+	var step = float((OS.get_ticks_msec() - last_movetime))
+	
+	if (step * delta) <= 1:
+		transform.basis = Basis(current_rot.slerp(target_rot, rotation_speed * delta))
+	last_step = step
+	forward = -global_transform.basis.z
 	
 	if not can_move:
 		move = main.V3_ZERO
@@ -75,7 +106,7 @@ func _process(delta):
 	
 	check_areas(area_check.get_overlapping_areas())
 	
-	move_and_slide(move * movement_speed * delta)
+	var collision = move_and_collide(forward * current_movespeed * delta)
 	if camera == null:
 		camera = main.get_camera()
 	camera.transform.origin = camera_target.transform.origin + camera_offset
@@ -86,6 +117,8 @@ func _process(delta):
 	info_label.text = 'current area: ' + current_area
 	info_label.text += '\nweapon: ' + weapons[current_weapon].name
 	info_label.text += '\nfps: ' + str(Engine.get_frames_per_second())
+	info_label.text += '\nmovespeed: ' + str(current_movespeed)
+	info_label.text += '\nrot: ' + str(rotation_speed * delta)
 
 func attack_start():
 	if weapons[current_weapon].cooldown.is_stopped():
