@@ -1,0 +1,187 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/area_room/area_room.gd" type="Script" id=1]
+[ext_resource path="res://gfx/icon_room.png" type="Texture" id=2]
+[ext_resource path="res://gfx/brick.png" type="Texture" id=3]
+[ext_resource path="res://gfx/brick_normal.png" type="Texture" id=4]
+[ext_resource path="res://obj/player_test.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 369, 203 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 293, 156 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 384.864, 156 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 384.864, 195.961 )
+
+[node name="test_room" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.537255, 0.537255, 0.537255, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 394.0
+margin_top = 403.0
+margin_right = 569.0
+margin_bottom = 461.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.705882, 0.45098, 0.12549, 1 )
+
+[node name="AreaRoom" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+room_name = "room01"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRoom"]
+position = Vector2( 607, 662 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect2" type="Sprite" parent="AreaRoom"]
+position = Vector2( 608.31, 662.604 )
+scale = Vector2( 11.4917, 6.29778 )
+texture = ExtResource( 3 )
+normal_map = ExtResource( 4 )
+_sections_unfolded = [ "Region" ]
+
+[node name="AreaRoom2" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+room_name = "a cool room"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRoom2"]
+position = Vector2( 528, 250 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect" type="ColorRect" parent="AreaRoom2"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 236.0
+margin_top = 94.0
+margin_right = 822.0
+margin_bottom = 405.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.411765, 0.388235, 0.815686, 1 )
+
+[node name="AreaRoom3" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+room_name = "the DEADLY ROOM omg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRoom3"]
+position = Vector2( 1370.11, 250 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect4" type="ColorRect" parent="AreaRoom3"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 992.0
+margin_top = 96.0
+margin_right = 1752.0
+margin_bottom = 403.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.92549, 0, 0.956863, 1 )
+
+[node name="AreaRoom4" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+room_name = "a safe room :)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRoom4"]
+position = Vector2( 1388.94, 653.324 )
+shape = SubResource( 4 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect4" type="ColorRect" parent="AreaRoom4"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1008.0
+margin_top = 457.0
+margin_right = 1768.0
+margin_bottom = 851.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.956863, 0.941176, 0, 1 )
+
+[node name="player_test" parent="." instance=ExtResource( 5 )]
+position = Vector2( 566, 794 )
+
