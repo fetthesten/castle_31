@@ -15,8 +15,7 @@ rings = 8
 
 [node name="player_test_3d" parent="." instance=ExtResource( 1 )]
 movement_speed = 30
-max_movement_speed = 20
-rotation_speed = 50
+rotation_speed = 100
 camera_offset = Vector3( 0, 20, 12 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

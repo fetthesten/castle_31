@@ -3,7 +3,7 @@ extends KinematicBody
 export var movement_speed = 30
 export var deceleration = 80
 export var max_movement_speed = 20
-export var rotation_speed = 50
+export var rotation_speed = 100
 export var camera_offset = Vector3(0,20,12)
 onready var area_check = $area_check
 onready var camera = main.current_camera

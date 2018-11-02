@@ -16,6 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="castle_31"
+boot_splash/image="res://gfx/best.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]
@@ -24,8 +26,8 @@ main="*res://obj/main.tscn"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=1268
+window/size/height=720
 window/vsync/use_vsync=false
 
 [editor_plugins]
@@ -71,5 +73,5 @@ game_right={
 
 [rendering]
 
-environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_clear_color=Color( 0.917647, 0.968627, 0.815686, 1 )
 environment/default_environment="res://default_env.tres"
