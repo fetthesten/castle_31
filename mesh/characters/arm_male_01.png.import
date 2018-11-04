@@ -2,13 +2,13 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/torso_male_01.png-78c042e5f983d003e3fe9660ee461654.s3tc.stex"
-path.etc2="res://.import/torso_male_01.png-78c042e5f983d003e3fe9660ee461654.etc2.stex"
+path.s3tc="res://.import/arm_male_01.png-cbe4cafa82489e5ff5110966d2dfa6fd.s3tc.stex"
+path.etc2="res://.import/arm_male_01.png-cbe4cafa82489e5ff5110966d2dfa6fd.etc2.stex"
 
 [deps]
 
-source_file="res://mesh/characters/torso_male_01.png"
-dest_files=[ "res://.import/torso_male_01.png-78c042e5f983d003e3fe9660ee461654.s3tc.stex", "res://.import/torso_male_01.png-78c042e5f983d003e3fe9660ee461654.etc2.stex" ]
+source_file="res://mesh/characters/arm_male_01.png"
+dest_files=[ "res://.import/arm_male_01.png-cbe4cafa82489e5ff5110966d2dfa6fd.s3tc.stex", "res://.import/arm_male_01.png-cbe4cafa82489e5ff5110966d2dfa6fd.etc2.stex" ]
 
 [params]
 

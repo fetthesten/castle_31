@@ -107,12 +107,22 @@ func _process(delta):
 	check_areas(area_check.get_overlapping_areas())
 	
 	var collision = move_and_collide(forward * current_movespeed * delta)
+	
+	# anim test
+	if current_movespeed > 0 and not $character_player_test/AnimationPlayer.current_animation == 'walking':
+		$character_player_test/AnimationPlayer.play('walking')
+		
+		print('playing anim')
+	if current_movespeed == 0 and $character_player_test/AnimationPlayer.is_playing():
+		$character_player_test/AnimationPlayer.stop()
+		print('stopping anim')
+	
 	if camera == null:
 		camera = main.get_camera()
 	camera.transform.origin = camera_target.transform.origin + camera_offset
 	camera.rotation_degrees = Vector3(-45, 0,0)
 	
-	weapon_model.transform.origin = weapon_offset.transform.origin
+	weapon_model.global_transform.origin = $character_player_test/arm_right/item_anchor_arm_right.global_transform.origin
 	
 	info_label.text = 'current area: ' + current_area
 	info_label.text += '\nweapon: ' + weapons[current_weapon].name

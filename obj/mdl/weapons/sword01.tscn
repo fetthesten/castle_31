@@ -60,8 +60,11 @@ proximity_fade_enable = false
 distance_fade_mode = 0
 _sections_unfolded = [ "Albedo" ]
 
-[node name="sword01" type="MeshInstance"]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -1.5 )
+[node name="sword01" type="Spatial"]
+_sections_unfolded = [ "Transform", "material" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-009, -0.1, 0, 0.1, -4.37114e-009, 0, 0, 0, 0.1, 0.25, 0, -1.5 )
 layers = 1
 material_override = null
 cast_shadow = 1

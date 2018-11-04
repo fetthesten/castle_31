@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/head_male_01.obj-f7d12188e48d1a4d0e922fe4afaa5d3a.mesh"
+
+[deps]
+
+files=[ "res://.import/head_male_01.obj-f7d12188e48d1a4d0e922fe4afaa5d3a.mesh" ]
+
+source_file="res://mesh/characters/head_male_01.obj"
+dest_files=[ "res://.import/head_male_01.obj-f7d12188e48d1a4d0e922fe4afaa5d3a.mesh", "res://.import/head_male_01.obj-f7d12188e48d1a4d0e922fe4afaa5d3a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
