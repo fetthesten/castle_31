@@ -109,11 +109,11 @@ func _process(delta):
 	var collision = move_and_collide(forward * current_movespeed * delta)
 	
 	# anim test
-	if current_movespeed > 0 and not $character_player_test/AnimationPlayer.current_animation == 'walking':
+	if current_movespeed > 0 and not $character_player_test/AnimationPlayer.current_animation == 'walking' and not $character_player_test/AnimationPlayer.current_animation == 'swing_right_arm':
 		$character_player_test/AnimationPlayer.play('walking')
 		
 		print('playing anim')
-	if current_movespeed == 0 and $character_player_test/AnimationPlayer.is_playing():
+	if current_movespeed == 0 and not $character_player_test/AnimationPlayer.current_animation == 'swing_right_arm' and $character_player_test/AnimationPlayer.is_playing():
 		$character_player_test/AnimationPlayer.stop()
 		print('stopping anim')
 	
@@ -122,7 +122,8 @@ func _process(delta):
 	camera.transform.origin = camera_target.transform.origin + camera_offset
 	camera.rotation_degrees = Vector3(-45, 0,0)
 	
-	weapon_model.global_transform.origin = $character_player_test/arm_right/item_anchor_arm_right.global_transform.origin
+	#weapon_model.global_transform.origin = $character_player_test/arm_right/item_anchor_arm_right.global_transform.origin
+	weapon_model.global_transform = $character_player_test/arm_right/item_anchor_arm_right.global_transform
 	
 	info_label.text = 'current area: ' + current_area
 	info_label.text += '\nweapon: ' + weapons[current_weapon].name
@@ -135,8 +136,7 @@ func attack_start():
 		var weapon = weapons[current_weapon]
 		weapon.cooldown.start()
 		
-		#weap_tween.targeting_property(weap_img, 'global_position', weap_img, 'global_position', tween_target, weapon.cooldown.time_left, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		#weap_tween.start()
+		$character_player_test/AnimationPlayer.play('swing_right_arm')
 		can_move = false
 		weapon.movestop.start()
 
