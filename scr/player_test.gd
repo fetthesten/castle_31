@@ -111,11 +111,8 @@ func _process(delta):
 	# anim test
 	if current_movespeed > 0 and not $character_player_test/AnimationPlayer.current_animation == 'walking' and not $character_player_test/AnimationPlayer.current_animation == 'swing_right_arm':
 		$character_player_test/AnimationPlayer.play('walking')
-		
-		print('playing anim')
 	if current_movespeed == 0 and not $character_player_test/AnimationPlayer.current_animation == 'swing_right_arm' and $character_player_test/AnimationPlayer.is_playing():
 		$character_player_test/AnimationPlayer.stop()
-		print('stopping anim')
 	
 	if camera == null:
 		camera = main.get_camera()
@@ -125,11 +122,11 @@ func _process(delta):
 	#weapon_model.global_transform.origin = $character_player_test/arm_right/item_anchor_arm_right.global_transform.origin
 	weapon_model.global_transform = $character_player_test/arm_right/item_anchor_arm_right.global_transform
 	
-	info_label.text = 'current area: ' + current_area
-	info_label.text += '\nweapon: ' + weapons[current_weapon].name
+	info_label.text = ''
+	info_label.text += 'weapon: ' + weapons[current_weapon].name
 	info_label.text += '\nfps: ' + str(Engine.get_frames_per_second())
-	info_label.text += '\nmovespeed: ' + str(current_movespeed)
-	info_label.text += '\nrot: ' + str(rotation_speed * delta)
+	#info_label.text += '\nmovespeed: ' + str(current_movespeed)
+	#info_label.text += '\nrot: ' + str(rotation_speed * delta)
 
 func attack_start():
 	if weapons[current_weapon].cooldown.is_stopped():

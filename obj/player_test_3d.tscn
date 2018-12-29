@@ -1,77 +1,41 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scr/player_test.gd" type="Script" id=1]
 [ext_resource path="res://obj/mdl/characters/character_player_test.tscn" type="PackedScene" id=2]
+[ext_resource path="res://obj/mdl/characters/super_char.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CylinderShape" id=1]
 
-margin = 0.04
 radius = 3.0
 height = 8.0
 
 [sub_resource type="CapsuleShape" id=2]
 
-margin = 0.04
 radius = 2.0
 height = 4.0
 
 [node name="player_test_3d" type="KinematicBody"]
-input_ray_pickable = true
-input_capture_on_drag = false
-collision_layer = 1
-collision_mask = 1
-move_lock_x = false
-move_lock_y = false
-move_lock_z = false
-collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "collision" ]
 movement_speed = 6000
-deceleration = 80
-max_movement_speed = 20
 rotation_speed = 50
 camera_offset = Vector3( 0, 10, 15 )
 
 [node name="area_check" type="Area" parent="."]
-input_ray_pickable = false
-input_capture_on_drag = false
-space_override = 0
-gravity_point = false
-gravity_distance_scale = 0.0
-gravity_vec = Vector3( 0, -1, 0 )
-gravity = 9.8
-linear_damp = 0.1
-angular_damp = 1.0
-priority = 0.0
-monitoring = true
-monitorable = true
-collision_layer = 1
-collision_mask = 1
-audio_bus_override = false
-audio_bus_name = "Master"
-reverb_bus_enable = false
-reverb_bus_name = "Master"
-reverb_bus_amount = 0.0
-reverb_bus_uniformity = 0.0
-_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="area_check"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
 shape = SubResource( 1 )
-disabled = false
-_sections_unfolded = [ "Transform", "shape" ]
 
 [node name="weapon_offset" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="character_player_test" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
-_sections_unfolded = [ "Transform" ]
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 4, 0 )
 shape = SubResource( 2 )
-disabled = false
-_sections_unfolded = [ "Transform", "shape" ]
+
+[node name="super_char" parent="." instance=ExtResource( 3 )]
 

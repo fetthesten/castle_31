@@ -9,8 +9,8 @@ const V3_DOWN = Vector3(0,0,1)
 # world up vector for lookat
 const V3_WORLDUP = Vector3(0,1,0)
 
-onready var info_label = $layer_hud/label_info
-onready var hud_weapon = $layer_hud/hud_weapon
+onready var info_label = $'layer_hud/ingame_menu'.get_info_label()
+onready var hud_weapon = $'layer_hud/ingame_menu'.get_hud_item(0)
 onready var current_scene = get_parent().get_child(1)
 var current_camera
 #var bg_tex
@@ -19,7 +19,6 @@ var current_window_size
 func _ready():
 	set_camera()
 	current_window_size = get_viewport().get_size()
-	hud_weapon.rect_global_position = current_window_size - hud_weapon.rect_size
 	#bg_tex = Texture.new()
 
 func set_camera():
