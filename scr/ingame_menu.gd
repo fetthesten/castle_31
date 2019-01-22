@@ -35,12 +35,10 @@ func set_sizes_and_positions():
 	tween_anchor.rect_global_position = pos_menuactive if is_menu_active else pos_menuinactive
 	
 func toggle():
-	if is_menu_active:
-		tween_movemenu.interpolate_property(tween_anchor, 'rect_global_position', tween_anchor.rect_global_position, pos_menuinactive, 0.3, Tween.TRANS_EXPO, Tween.EASE_IN)
-		tween_movemenu.start()
-	else:
-		tween_movemenu.interpolate_property(tween_anchor, 'rect_global_position', tween_anchor.rect_global_position, pos_menuactive, 0.3, Tween.TRANS_EXPO, Tween.EASE_IN)
-		tween_movemenu.start()
+	var target_pos = pos_menuinactive if is_menu_active else pos_menuactive
+	
+	tween_movemenu.interpolate_property(tween_anchor, 'rect_global_position', tween_anchor.rect_global_position, target_pos, 0.3, Tween.TRANS_EXPO, Tween.EASE_IN)
+	tween_movemenu.start()
 	
 	is_menu_active = !is_menu_active
 	
