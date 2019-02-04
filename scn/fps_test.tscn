@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://obj/fps_player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+
+[sub_resource type="ConvexPolygonShape" id=2]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="CubeMesh" id=3]
+
+
+[sub_resource type="ConvexPolygonShape" id=4]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="CubeMesh" id=5]
+
+
+[sub_resource type="ConvexPolygonShape" id=6]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="CubeMesh" id=7]
+
+
+[sub_resource type="ConvexPolygonShape" id=8]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="CubeMesh" id=9]
+
+
+[sub_resource type="ConvexPolygonShape" id=10]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[node name="fps_test" type="Spatial"]
+
+[node name="fps_player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+
+[node name="level mesh" type="Node" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -11.524 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 20, 0, 0, 0, 0.2, 0, 0, 0, 20, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance2/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 5, 0, 0, 0, 2, 0, 0, 0, 5, 0, 2, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance3/StaticBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 20, 0, 0, 0, 0.2, 0, 0, 0, 40, 0.00548935, -13.6781, -76.2686 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance5/StaticBody"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 5, 0, 0, 0, 0.187939, 6.8404, 0, -0.068404, 18.7939, 14.8868, -6.83248, -38.7086 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance4/StaticBody"]
+shape = SubResource( 10 )
+
+[node name="MeshInstance7" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
+transform = Transform( 5, 0, 0, 0, 0.196962, 6.94593, 0, -0.0347296, 39.3923, -5.04066, -6.93858, -59.3294 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance7/StaticBody"]
+shape = SubResource( 10 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="level mesh"]
+transform = Transform( 5, 0, 0, 0, 0.153209, 12.8558, 0, -0.128558, 15.3209, 4.88783, -12.7647, -35.125 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="level mesh/MeshInstance6"]
+
+[node name="CollisionShape" type="CollisionShape" parent="level mesh/MeshInstance6/StaticBody"]
+shape = SubResource( 10 )
+
+[node name="OmniLight" type="OmniLight" parent="level mesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154228, 1.05724, -8.28803 )
+light_color = Color( 0.752941, 0.482353, 0.0117647, 1 )
+shadow_enabled = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="level mesh"]
+transform = Transform( 0.855514, -0.3225, 0.405079, 0, 0.782339, 0.622853, -0.517779, -0.532859, 0.669302, 0, 7.16023, 15.4395 )
+light_color = Color( 0.996078, 1, 0.686275, 1 )
+light_energy = 0.1
+shadow_enabled = true
+shadow_bias = 0.0
+

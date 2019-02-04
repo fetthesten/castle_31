@@ -14,7 +14,7 @@ var pos_menuinactive # viewport pos for menu when inactive
 
 func _ready():
 	
-	bg_menu.color = Color(0.3,0.1,0.01,0.95)
+	bg_menu.color = Color(0.0,0.1,0.3,0.95)
 	connect('resized', self, 'set_sizes_and_positions')
 	set_sizes_and_positions()
 
