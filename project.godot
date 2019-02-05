@@ -27,8 +27,7 @@ main="*res://obj/main.tscn"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/height=728
 window/vsync/use_vsync=false
 
 [editor_plugins]

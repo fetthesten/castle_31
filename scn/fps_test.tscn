@@ -50,6 +50,7 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
 
 [node name="level mesh" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="MeshInstance" type="MeshInstance" parent="level mesh"]
 editor/display_folded = true
@@ -129,6 +130,7 @@ material/0 = null
 shape = SubResource( 10 )
 
 [node name="MeshInstance8" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 9.40699, 0.506253, 0 )
 mesh = SubResource( 11 )
 material/0 = null
@@ -139,6 +141,7 @@ material/0 = null
 shape = SubResource( 12 )
 
 [node name="MeshInstance9" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 8.64217, 1.1033, 0 )
 mesh = SubResource( 11 )
 material/0 = null
@@ -149,6 +152,7 @@ material/0 = null
 shape = SubResource( 12 )
 
 [node name="MeshInstance10" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 7.88054, 1.68373, 0 )
 mesh = SubResource( 11 )
 material/0 = null
@@ -159,6 +163,7 @@ material/0 = null
 shape = SubResource( 12 )
 
 [node name="MeshInstance11" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 7.12243, 2.28259, 0 )
 mesh = SubResource( 11 )
 material/0 = null
@@ -169,6 +174,7 @@ material/0 = null
 shape = SubResource( 12 )
 
 [node name="MeshInstance12" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 6.33877, 2.88796, 0 )
 mesh = SubResource( 11 )
 material/0 = null
@@ -179,6 +185,7 @@ material/0 = null
 shape = SubResource( 12 )
 
 [node name="MeshInstance13" type="MeshInstance" parent="level mesh"]
+editor/display_folded = true
 transform = Transform( 5, 0, 0, 0, 0.3, 0, 0, 0, 5, 5.58843, 3.46302, 0 )
 mesh = SubResource( 11 )
 material/0 = null
