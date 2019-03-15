@@ -29,5 +29,3 @@ shape = SubResource( 2 )
 [node name="CollisionShape2" type="CollisionShape" parent="detection_area"]
 shape = SubResource( 3 )
 
-[node name="SkeletonIK" type="SkeletonIK" parent="."]
-

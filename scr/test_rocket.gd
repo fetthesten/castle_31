@@ -22,6 +22,6 @@ func _physics_process(delta):
 			$CollisionShape.disabled = true
 			$Particles.emitting = false
 			var explosion = explosion_prefab.instance()
-			explosion.global_transform.origin = global_transform.origin
 			main.current_scene().add_child(explosion)
+			explosion.global_transform.origin = global_transform.origin
 			explosion.restart()

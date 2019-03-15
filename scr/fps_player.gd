@@ -55,10 +55,11 @@ func process_input(delta):
 	if Input.is_action_pressed('game_attack') and OS.get_ticks_msec() >= (last_rocket_time + rocket_cooldown):
 		last_rocket_time = OS.get_ticks_msec()
 		var rocket = rocket_test_prefab.instance()
-		rocket.global_transform.origin = sword.firing_point.global_transform.origin
+		rocket.global_transform.origin = sword.firing_point.global_transform.origin		
 		rocket.rotation.x = camera.rotation.x
 		rocket.rotation.y = rotation.y
 		main.current_scene().add_child(rocket)
+		
 	
 	is_sprinting = Input.is_action_pressed('game_sprint')
 	
