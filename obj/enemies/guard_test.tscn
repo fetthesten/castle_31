@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scr/entities/guard_test.gd" type="Script" id=1]
+[ext_resource path="res://_assets/guard.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://_assets/knight.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="SphereShape" id=3]
+radius = 50.0
+
+[node name="guard_test" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="guard" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-009, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-009, 0, 1, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1.6, 0, 1, -6.99382e-008, 0, 2.2, 0.8 )
+shape = SubResource( 2 )
+
+[node name="detection_area" type="Area" parent="."]
+
+[node name="CollisionShape2" type="CollisionShape" parent="detection_area"]
+shape = SubResource( 3 )
+
+[node name="SkeletonIK" type="SkeletonIK" parent="."]
+

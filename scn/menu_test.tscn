@@ -13,10 +13,10 @@ margin_bottom = 698.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 473.0
-margin_top = 290.0
-margin_right = 1241.0
-margin_bottom = 643.0
+margin_left = 477.0
+margin_top = 274.0
+margin_right = 1245.0
+margin_bottom = 627.0
 bbcode_enabled = true
 bbcode_text = "[color=Red]Press space to start!!!!![/color]
 "

@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/brick.png-825d6f253b37b052163077088998c587.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

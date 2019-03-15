@@ -20,3 +20,8 @@ margin_bottom = 40.0
 
 [node name="ingame_menu" parent="layer_hud" instance=ExtResource( 2 )]
 
+[node name="crosshair" type="ColorRect" parent="layer_hud"]
+margin_right = 8.0
+margin_bottom = 8.0
+color = Color( 1, 0, 0, 1 )
+

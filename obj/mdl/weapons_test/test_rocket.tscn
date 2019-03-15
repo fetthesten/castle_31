@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scr/test_rocket.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="Curve" id=3]
+max_value = 6.0
+_data = [ Vector2( 0, 0 ), 0.0, 1.12653, 0, 0, Vector2( 0.354714, 3.7128 ), 12.0736, 12.0736, 0, 0, Vector2( 0.5, 5.3496 ), 4.59678, 4.59678, 0, 0, Vector2( 0.63411, 5.4552 ), -1.97769, -1.97769, 0, 0, Vector2( 0.839001, 3.7656 ), -9.44893, -9.44893, 0, 0, Vector2( 0.999188, 0.1224 ), -32.3964, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="CurveTexture" id=5]
+
+[sub_resource type="ParticlesMaterial" id=6]
+trail_size_modifier = SubResource( 5 )
+spread = 4.15
+flatness = 0.81
+gravity = Vector3( 0, -2, 0 )
+initial_velocity = 7.09
+angle_random = 0.33
+scale_random = 0.82
+scale_curve = SubResource( 4 )
+
+[sub_resource type="SphereMesh" id=7]
+radius = 0.1
+height = 0.1
+radial_segments = 32
+rings = 16
+
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.2
+
+[node name="test_rocket" type="KinematicBody"]
+input_ray_pickable = false
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.2, 0, 0, 0, -1.74846e-008, -0.2, 0, 0.4, -8.74228e-009, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="."]
+amount = 20
+speed_scale = 2.0
+local_coords = false
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 8 )
+
+[node name="death_timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+

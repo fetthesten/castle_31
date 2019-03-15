@@ -1,13 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scr/fps_player.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
-
 height = 2.0
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="ProceduralSky" id=3]
+sky_top_color = Color( 0.341176, 0.0470588, 0.0470588, 1 )
+sky_horizon_color = Color( 0.894118, 0.317647, 0.00784314, 1 )
+sun_color = Color( 1, 0, 0, 1 )
 
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 3 )
+ambient_light_color = Color( 0.247059, 0, 0, 1 )
+fog_enabled = true
+fog_color = Color( 0.388235, 0, 0, 1 )
+fog_sun_color = Color( 0.996078, 0.670588, 0.529412, 1 )
+fog_sun_amount = 0.13
+fog_depth_enabled = false
+ss_reflections_enabled = true
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id=2]
 
 [node name="fps_player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -18,12 +34,15 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42655, 0 )
+environment = SubResource( 4 )
+current = true
+far = 500.0
+
+[node name="weapon_mount" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.763099, -0.99311, -0.665186 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
-
-[node name="weapon_mount" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.763099, 0, -0.914974 )
 

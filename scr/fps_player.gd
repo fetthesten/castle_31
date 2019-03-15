@@ -1,101 +1,99 @@
 extends KinematicBody
 
-export var movement_speed = 30
-export var jump_speed = 5
-export var deceleration = 80
-export var max_movement_speed = 20
+export var max_speed = 20
+export var max_sprint_speed = 50
+export var jump_speed = 18
+export var walk_accel = 4.5
+export var sprint_accel = 18.0
+export var deaccel = 16
+export var max_slope_angle = 40
+
+export var camera_max_angle = 80
+
+var is_sprinting = false
+var dir = Vector3()
+var vel = Vector3()
 
 onready var camera = $Camera
-onready var weapon_mount = $weapon_mount
+onready var weapon_mount = $Camera/weapon_mount
 onready var info_label = main.info_label
 
-var sword_test_prefab = preload('res://obj/mdl/weapons_test/fps_sword_test.tscn')
-
-var current_movespeed = 0
-var current_jumpmagnitude = 0
-# movement vector at the time of a jump to direct aerial movement
-var last_grounded_move_vector = main.V3_GRAVITY
-# make look sensitivity adjustable, suggest settings from 0.001 to 0.01 for mouse
-var mouse_sensitivity = 0.005
-# maybe 0.0003 to 0.001 for stick
-var stick_sensitivity = 0.001
-# make stick deadzone adjustable because not all sticks are equal, 0.3 works fine for me
-var stick_deadzone = 0.3
-# msec tick time for last mouse movement, to avoid duplicating mouse events
-var last_mouse_move = 1
-var is_grounded = false
-
-
+# weapon test
+var sword_test_prefab = preload('res://obj/mdl/weapons_test/rocketlauncher_fps_test.tscn')
+var rocket_test_prefab = preload('res://obj/mdl/weapons_test/test_rocket.tscn')
+var last_rocket_time = OS.get_ticks_msec()
+var rocket_cooldown = 800
+var sword
 
 func _ready():
-	var sword = sword_test_prefab.instance()
+	sword = sword_test_prefab.instance()
 	sword.transform.origin = weapon_mount.transform.origin
 	weapon_mount.add_child(sword)
+	main.connect('mouse_motion', self, 'mouse_look')
 
-func _process(delta):
-	var move = main.V3_GRAVITY
-	var look = Vector2.ZERO
+func _physics_process(delta):
+	process_input(delta)
+	process_movement(delta)
 	
-	# get move axes/inputs, stick overrides keys
+func process_input(delta):
+	# walking
+	dir = Vector3()
+	var cam_xform = camera.get_global_transform()
+	
+	var input_movement_vector = Vector2()
+	
 	if Input.is_action_pressed('game_up'):
-		move -= transform.basis.z
-	elif Input.is_action_pressed('game_down'):
-		move += transform.basis.z
+		input_movement_vector.y += 1
+	if Input.is_action_pressed('game_down'):
+		input_movement_vector.y -= 1
+	if Input.is_action_pressed('game_right'):
+		input_movement_vector.x += 1
 	if Input.is_action_pressed('game_left'):
-		move -= transform.basis.x
-	elif Input.is_action_pressed('game_right'):
-		move += transform.basis.x
+		input_movement_vector.x -= 1
+		
+	#weapon test
+	if Input.is_action_pressed('game_attack') and OS.get_ticks_msec() >= (last_rocket_time + rocket_cooldown):
+		last_rocket_time = OS.get_ticks_msec()
+		var rocket = rocket_test_prefab.instance()
+		rocket.global_transform.origin = sword.firing_point.global_transform.origin
+		rocket.rotation.x = camera.rotation.x
+		rocket.rotation.y = rotation.y
+		main.current_scene().add_child(rocket)
 	
-	if abs(Input.get_joy_axis(0, JOY_ANALOG_LX)) > stick_deadzone:
-		move += transform.basis.x * Input.get_joy_axis(0, JOY_ANALOG_LX)
-	if abs(Input.get_joy_axis(0, JOY_ANALOG_LY)) > stick_deadzone:
-		move += transform.basis.z * Input.get_joy_axis(0, JOY_ANALOG_LY)
+	is_sprinting = Input.is_action_pressed('game_sprint')
 	
-	if is_grounded: 
-		last_grounded_move_vector = move
-		if Input.is_action_pressed('game_jump'):
-			current_jumpmagnitude = 1.0
+	input_movement_vector = input_movement_vector.normalized()
+	
+	dir += -cam_xform.basis.z.normalized() * input_movement_vector.y
+	dir += cam_xform.basis.x.normalized() * input_movement_vector.x
+	
+	# jumping
+	if is_on_floor():
+		if Input.is_action_just_pressed('game_jump'):
+			vel.y = jump_speed	
+
+func process_movement(delta):
+	dir.y = 0
+	dir = dir.normalized()
+	
+	vel.y += delta * main.gravity
+	var hvel = vel
+	hvel.y = 0
+	var target = dir
+	target *= max_sprint_speed if is_sprinting else max_speed
+	
+	var accel
+	if dir.dot(hvel) > 0:
+		accel = sprint_accel if is_sprinting else walk_accel
 	else:
-		move = lerp(last_grounded_move_vector, move, 0.25)
+		accel = deaccel
+		
+	hvel = hvel.linear_interpolate(target, accel * delta)
+	vel.x = hvel.x
+	vel.z = hvel.z
+	vel = move_and_slide(vel, Vector3(0,1,0), 0.05, 4, deg2rad(max_slope_angle))
 	
-	
-	# get look axes, stick overrides mouse
-	if main.mouse_state.last_move != last_mouse_move:
-		last_mouse_move = main.mouse_state.last_move
-		look = main.mouse_state.move * -mouse_sensitivity
-		look.y = -look.y if main.invert_look else look.y
-	
-	if abs(Input.get_joy_axis(0, JOY_ANALOG_RX)) > stick_deadzone:
-		look.x = Input.get_joy_axis(0, JOY_ANALOG_RX) * -stick_sensitivity
-	if abs(Input.get_joy_axis(0, JOY_ANALOG_RY)) > stick_deadzone:
-		look.y = Input.get_joy_axis(0, JOY_ANALOG_RY) * -stick_sensitivity
-		look.y = -look.y if main.invert_look else look.y
-	
-	if move != main.V3_ZERO:
-		current_movespeed += movement_speed * delta
-		current_movespeed = min(current_movespeed, max_movement_speed)
-	else:
-		current_movespeed -= deceleration * delta
-		current_movespeed = max(current_movespeed, 0)
-	
-	if current_jumpmagnitude > 0:
-		current_jumpmagnitude += main.V3_GRAVITY.y * delta
-	
-	move.y += jump_speed * current_jumpmagnitude
-	
-	var collision = move_and_collide(move * current_movespeed * delta)
-	if collision:
-		if collision.travel.y < 0:
-			is_grounded = true
-	else:
-		is_grounded = false
-	
-	main.info_label.text = str('grounded: ' + str(is_grounded))
-	#camera.rotate_object_local(Vector3(1,0,0), deg2rad(look.y))
-	#self.rotate_object_local(Vector3(0,1,0), deg2rad(look.x))
-	self.set_rotation(self.get_rotation() + Vector3(0, look.x, 0))
-	var cam_rotation = camera.get_rotation() + Vector3(look.y, 0, 0)
-	cam_rotation.x = clamp(cam_rotation.x, PI / -2, PI /2)
-	camera.set_rotation(cam_rotation)
-	
-	transform = transform.orthonormalized()
+func mouse_look(relative):
+	camera.rotate_x(deg2rad(relative.y * main.mouse_sensitivity * main.invert_look))
+	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -camera_max_angle, camera_max_angle)
+	self.rotate_y(deg2rad(relative.x * main.mouse_sensitivity * -1))

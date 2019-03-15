@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scr/rocketlauncher_fps_test.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+
+[sub_resource type="PrismMesh" id=2]
+
+[node name="rocketlauncher_fps_test" type="Spatial"]
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -5.24537e-008, -0.5, 0, 1.2, -2.18557e-008, 0, 0, 0.837127 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.196962, -0.104189, 0, -1.51808e-009, -2.58284e-008, -0.2, 0.0347296, 0.590885, -8.74228e-009, -0.364496, 0, 2.63053 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( -1.51808e-009, 2.58284e-008, 0.2, 0.196962, 0.104189, 0, -0.0347296, 0.590885, -8.74228e-009, -0.00373492, 0.367039, 2.63053 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 0.196962, 0.104189, -1.51808e-009, 0, -2.62268e-008, -0.2, -0.0347296, 0.590885, -8.60946e-009, 0.364279, 0, 2.63053 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="firing_point" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09737e-007, 0, 2.39912 )
+
